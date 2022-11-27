@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.bundle.min.js"></script>
+    <title>悠嘻相声社</title>
+
+    <link rel="stylesheet" th:href="@{/icon/home/iconfont.css}">
+
+
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_3449189_1qvtnltxygf.css">
+
+    <!-- 侧边栏的css   -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/leftNav.css}" />
+
+    <style>
+
+        .body>h5 {
+            font-size: 1.8rem;
+            font-family: STHupo;
+            text-align: center;
+            margin-top: 20%;
+            margin-bottom: 30px;
+            color:rgb(177 3 12);
+        }
+
+        .word>p {
+            font-size: 1rem;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+            font-family: LiSu;
+            margin-left: 2%;
+            margin-top: 5%;
+            /* //首行缩进 */
+            text-indent: 1.5em;
+        }
+
+
+    </style>
+    
+       
+<script type="text/javascript" th:src="@{/js/turnimage.js}" ></script>
+<link rel="stylesheet" type="text/css" th:href="@{/css/turnimage.css}"/>
+
+</head>
+
+<body>
+
+    <div th:replace="common :: function1"></div>
+
+    <div class="body">
+        <h5>社团简介</h5>
+        <!-- 图片的轮播图 -->
+        <div id="outer">
+            <img th:src="@{/images/1.jpg}" alt="">
+            <!-- <a href="#" id="prev">&lt;</a>
+            <a href="#" id="next">&gt;</a> -->
+            <a href="#" id="prev">
+                <img th:src="@{/images/prev.jpg}"  alt="">
+            </a>
+            <a href="#" id="next">
+                <img th:src="@{/images/next.png}"  alt="">
+            </a>
+
+            <!-- 导航按钮 -->
+            <div id="navDiv">
+                <a class="aa" href="javascript:;"></a>
+                <a class="aa" href="javascript:;"></a>
+                <a class="aa" href="javascript:;"></a>
+                <a class="aa" href="javascript:;"></a>
+                <a class="aa" href="javascript:;"></a>
+            </div>
+        </div>
+
+
+        <!-- 正文 -->
+        <div class="word">
+            <p>武汉东湖学院悠嘻相声社成立于2012年9月份，社团秉持 “丰富校园文娱活动，提升该校素质教育层次”
+                的宗旨。以“丰富校园文娱活动形式，给既有热爱相声的同学提供交流平台；继续宣传和发扬‘厚德、笃学、求是、创新’的校训，创作更多更优秀的原创相声”为目的。</p>
+            <p>自成立以来，参加学校举办的大大小小、几乎所有的校园活动，如学校和各院迎新晚会、社团文化艺术节开闭幕式、校文化艺术节开幕式等，可以说：哪有有晚会，哪里就有我们悠嘻相声社的身影。代表性节目中有相声节目《怪治病》、《卖吊票》、《我要奋斗》、《戏说方言》等，小品节目《拥抱吧
+                鞋垫》、《啊，青春》、《白蛇传》、《笑傲江湖》等。</p>
+            <p>相声社除了参加了校内各种大中小型的晚会演出，也开展校园相声专场、相声名家讲座、经典相声赏析等活动，继续传播相声这一民族精粹，让更多喜爱相声的同学加入我们行列。</p>
+            <p>在全体成员的共同努力下，我们为校园的文化建设做出了自己应有的一份贡献，为校园增添了一缕文化气息，丰富了我们的大学生活。</p>
+            <p>作为一个<a th:href="@{/manger/root}" style="color: black;text-decoration: none">年轻的社团</a> ，还有很多方面不太成熟，相信在校团委的大力支持、兄弟社团的帮助以及社员们的共同努力下，我们悠嘻相声社会正逐渐成长为一个成熟有序的社团，丰富广大师生的学习和工作生活。</p>
+        </div>
+    </div>
+
+    <div th:replace="common :: function2"></div>
+
+
+
+
+
+</body>
+
+</html>

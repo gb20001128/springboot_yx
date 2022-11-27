@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.bundle.min.js"></script>
+    <title>悠嘻相声社--更改信息</title>
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_3449189_1qvtnltxygf.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/leftNav.css}" />
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js"></script>
+    <link rel="stylesheet" th:href="@{/css/editData.css}">
+    <link rel="stylesheet" th:href="@{/css/change.css}">
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_3449189_1qvtnltxygf.css">
+
+    <link rel="stylesheet" th:href="@{/icon/home/iconfont.css}">
+
+
+    <style type="text/css">
+        .body {
+            margin-top: 15%;
+        }
+
+        .body>h5 {
+            font-size: 1rem;
+            /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif; */
+            /* font-family: YouYuan; */
+            font-family: STHupo;
+            /* font-weight: bolder; */
+            color: #b10c03;
+            margin-left: 2%;
+            margin-top: 5%;
+        }
+
+        .word>p {
+            font-size: .8rem;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+            /* font-weight: bolder; */
+            font-family: LiSu;
+            margin-left: 2%;
+            margin-top: 5%;
+            /* //首行缩进 */
+            text-indent: 1.5em;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div th:replace="common :: function1"></div>
+    <div th:replace="common :: function2"></div>
+
+    <div class="body">
+        <p style="font-size: 1.2rem; color: rgb(177 3 12);text-align: center ">修改信息</p>
+        <form th:action="@{/updateMyPhotoName}" method="post" class="inforform" name="changeFormData"
+            enctype="multipart/form-data">
+            <!-- <input type="text" class="form-contro" id="uname" placeholder="Enter username" name="uname" required>
+        <input type="password" class="form-contro" id="pwd" placeholder="Enter password" name="pswd" required> -->
+
+            <table style="font-size: 1rem; color:grey; text-align:left;">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <td></td>
+                            <td></td>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <img id="imgforchange"
+                                    th:src="@{'http://43.142.110.195:8080/headImage/'+${session.My_headImage}}" alt="" />
+                            </td>
+                            <td style="position: relative;">
+                                <input type="file" name="photo" id="upload-input"
+                                    style="position: absolute; opacity: 0;" accept="image/jpeg,image/jpg,image/png"
+                                    onchange="showImg(this)" />
+                                <button id="changePic">上传头像</button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                        <tr>
+                            <td>用户昵称：</td>
+                            <td>
+                                <input type="text" class="form-contro" id="uname" placeholder="请输入新的用户昵称"
+                                    name="newName">
+                            </td>
+                        </tr>
+                        </tr>
+                    </tbody>
+                </table>
+            </table>
+            <button type="submit" class="changefd" id="changetx">更改头像/ID</button>
+        </form>
+
+
+
+        <form th:action="@{/updateMyPassWord}" method="post" class="inforform" name="changeFormData">
+            <!-- <input type="text" class="form-contro" id="uname" placeholder="Enter username" name="uname" required>
+        <input type="password" class="form-contro" id="pwd" placeholder="Enter password" name="pswd" required> -->
+
+            <table style="font-size: 1rem; color:grey; text-align:left;">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <td></td>
+                            <td></td>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+
+                        </tr>
+                        <tr>
+                            <td>新密码：</td>
+                            <td>
+                                <input type="password" class="form-contro" id="pwd" placeholder="请输入新的用户密码" name="pwd">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>确认密码：</td>
+                            <td>
+                                <input type="password" class="form-contro" id="repwd" placeholder="请确认密码" name="rpswd">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </table>
+            <button id="changefd" type="submit" class="changefd">修改</button>
+        </form>
+
+    </div>
+
+    <!-- 正文 -->
+
+
+
+
+</body>
+
+</html>
+
+<!-- 用户名及密码更改设置 -->
+<script>
+    $(function () {
+        var uname = document.getElementById('uname');
+        var pwd = document.getElementById('pwd');
+        var repwd = document.getElementById('repwd');
+        // var btn = document.querySelector('.btn');
+        var inputs = document.querySelectorAll('.form-contro');
+        // var str = /^[a-zA-Z0-9]{6,12}/g;
+
+        uname.onblur = function () {
+            uname.classList.remove('change');
+            if (uname.value != '') {
+                if (uname.value.length > 9) {
+                    uname.value = '';
+                    uname.classList.add('change');
+                    inputs[0].placeholder = '长度不能超过八个字!';
+                }
+            }
+        }
+
+        uname.onfocus = function () {
+            inputs[0].placeholder = '请输入新的用户昵称';
+            uname.classList.remove('change');
+        }
+
+        pwd.onblur = function () {
+            pwd.classList.remove('change');
+            if (pwd.value != '') {
+                var str = /^[a-zA-Z0-9]{6,12}/g;
+                if (!str.test(pwd.value)) {
+                    pwd.value = '';
+                    pwd.classList.add('change');
+                    inputs[1].placeholder = '密码须包含6-12位的字母数字!';
+                }
+            }
+
+        }
+
+        pwd.onfocus = function () {
+            inputs[1].placeholder = '请输入新的用户密码';
+            pwd.classList.remove('change');
+        }
+
+        repwd.onblur = function () {
+            repwd.classList.remove('change');
+            if (pwd.value != '') {
+                if (repwd == '') {
+                    repwd.classList.add('change');
+                    inputs[2].placeholder = '请确认密码!';
+                } else if (repwd.value != pwd.value) {
+                    repwd.value = '';
+                    repwd.classList.add('change');
+                    inputs[2].placeholder = '输入的两次密码不一致!';
+                } else return true;
+            }
+        }
+
+        repwd.onfocus = function () {
+            inputs[2].placeholder = '请确认密码';
+            repwd.classList.remove('change');
+        }
+
+
+
+    });
+</script>
+
+
+
+
+<!-- 上传图片js设置 -->
+<script>
+    function showImg(input) {
+        var file = input.files[0];
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $("#imgforchange").attr("src", e.target.result);
+        }
+        reader.readAsDataURL(file);
+
+    }
+</script>
+
+<!-- btn的设置 -->
+<script>
+    $(function () {
+        $('#changefd').click(function () {
+            var pwd = $('#pwd').val();
+            var repwd = $('#repwd').val();
+            if (pwd == '' && repwd == '') {
+                alert('请输入新的密码');
+                return false;
+            } else if (pwd != repwd) {
+                alert('两次密码不一致');
+                return false;
+            }
+        });
+        $('#changetx').click(function () {
+            var file = $('#upload-input').val();
+            var uname = $('#uname').val();
+            if (file == '' && uname == '') {
+                alert('头像和昵称至少修改一项哦！');
+                return false;
+            }
+            var fileType = file.substring(file.lastIndexOf(".") + 1);
+            if (file != '' && fileType != 'jpg' && fileType != 'JPG' && fileType != 'PNG' && fileType != 'png' && fileType != 'jpeg' && fileType != 'JPEG') {
+                alert("请选择正确的图片格式");
+                return false;
+            }
+
+        });
+    });
+
+</script>

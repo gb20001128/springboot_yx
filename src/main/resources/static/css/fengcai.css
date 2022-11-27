@@ -1,0 +1,63 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+.tbody1 {
+    width: 100%;
+    height: 100%;
+    margin-top: 5%;
+    /* background-color: black; */
+    /* overflow: auto; */
+}
+
+.tbody1 .imgforpic {
+    margin-left: 3%;
+    /* margin-top: 3%; */
+}
+
+.wordDiv {
+    width: 90%;
+    margin-top: 2%;
+    margin-left: 5%;
+}
+
+.picDiv {
+    margin-top: 3%;
+    margin-left: 5%;
+}
+
+.picDiv img {
+    width: 50%;
+    margin-left: 3%;
+    background-color: rgb(234, 230, 230);
+    overflow: auto;
+}
+
+.dianzan {
+    width: 85%;
+    height: 100%;
+    margin: 0 7.5%;
+    /* background-color: rgb(201, 184, 184); */
+    background-color: rgb(234, 230, 230);
+    overflow: auto;
+}
+
+.dianzan>a {
+    float: right;
+}
+
+.dianzan>.btnn {
+    width: 15%;
+    /* height: 10%; */
+    background-color:rgb(177 3 12);
+    margin: 0 1%;
+    border-radius: 20%;
+    text-align: center;
+    color: white;
+
+}

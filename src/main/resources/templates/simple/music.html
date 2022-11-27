@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+  <link href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.bundle.min.js"></script>
+  <title>悠嘻相声社--悠嘻音乐</title>
+  <link rel="stylesheet" href="http://at.alicdn.com/t/font_3449189_1qvtnltxygf.css">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/leftNav.css}" />
+  <link rel="stylesheet" th:href="@{/css/music.css}">
+  <!-- 暂时因为阿里图库原因先用本地链接 -->
+  <link rel="stylesheet" th:href="@{/icon/home/iconfont.css}">
+  <link rel="stylesheet" th:href="@{/icon/music/iconfont.css}">
+
+</head>
+
+<body>
+
+<div th:replace="common :: function1"></div>
+<div th:replace="common :: function2"></div>
+
+  <div class="wrap">
+    <!-- 播放器主体区域 -->
+    <div class="play_wrap" id="player">
+      <div class="search_bar">
+        <!-- <img src="../img/player_title.png" alt="" /> -->
+        <b>悠嘻音乐</b>
+        <!-- 搜索歌曲 -->
+        <div class="search">
+          <button class="iconfont icon-sousuo" @click="searchMusic"></button>
+          <input type="text" autocomplete="off" v-model="query" @keyup.enter="searchMusic" placeholder="请输入歌手获或歌名" />
+        </div>
+
+      </div>
+
+      <div class="center_con">
+        <!-- 搜索歌曲列表 -->
+        <div class='song_wrapper'>
+          <ul class="song_list">
+            <li v-for="item in musicList">
+              <a href="javascript:;" @click="playMusic(item.id)">
+                <span class="iconfont icon-bofang">
+                  <b>{{ item.name }}</b>
+                  <span v-if="item.mvid!=0" @click="playMV(item.mvid);play()"
+                    class="iconfont icon-bofangqi-bofangxiaodianshi"><i></i>
+                  </span>
+                </span>
+              </a>
+            </li>
+          </ul>
+          <img th:src="@{/images/line.png}" class="switch_btn" alt="">
+        </div>
+
+        <!-- 歌曲信息容器 -->
+        <div class="player_con" :class="{playing:isPlaying}">
+          <img th:src="@{/images/player_bar.png}" class="play_bar" />
+          <!-- 黑胶碟片 -->
+
+          <div class="coverDiv">
+            <!-- <img :src="musicCover" class="cover autoRotate" /> -->
+            <img th:src="@{/images/disc.png}" class="disc autoRotate" />
+            <img th:src="@{/images/logo.png}" class="cover autoRotate" />
+
+          </div>
+        </div>
+      </div>
+
+      <!-- 播放控制区域 -->
+      <div class="audio_con">
+        <audio ref='audio' @play="play" @pause="pause" :src="musicUrl" controls autoplay loop class="myaudio"></audio>
+      </div>
+      <div class="video_con" v-show="isShow" style="display: none;">
+        <video :src="mvUrl" controls="controls"></video>
+        <div class="mask" @click="hide"></div>
+      </div>
+      <!-- 评论容器 -->
+      <div class="comment_wrapper">
+        <p class='title'>热门留言</p>
+        <div class='comment_list'>
+          <dl v-for="item in hotComments">
+            <!--评论人头像-->
+            <dt><img :src="item.user.avatarUrl" alt=""></dt>
+            <!--评论人网名-->
+            <dd class="name">{{item.user.nickname}}</dd>
+            <!--评论-->
+            <dd class="detail">
+              {{ item.content }}
+            </dd>
+          </dl>
+        </div>
+        <!-- <img src="images/line.png" class="right_line"> -->
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 开发环境版本Vue -->
+  <script th:src="@{/js/vue.js}"></script>
+  <!-- 官网提供的 axios 在线地址 -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script th:src="@{/js/music.js}"></script>
+
+
+
+
+</body>
+
+</html>

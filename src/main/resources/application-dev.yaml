@@ -1,0 +1,8 @@
+file:
+  pathHead: F:\\apache-tomcat-8.0.50\\webapps\\headImage\\
+  pathShow: F:\\apache-tomcat-8.0.50\\webapps\\upload\\
+  pathLove: F:\\apache-tomcat-8.0.50\\webapps\\love\\
+
+
+#  @Value("${file.pathShow}")
+#  String Base_Path;

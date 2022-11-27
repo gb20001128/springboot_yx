@@ -1,0 +1,83 @@
+body {
+    position: relative;
+    background-color: #fff;
+    /* background-color: #c75c56; */
+}
+
+.body>p {
+    font-size: 1.2rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    color: #000;
+    font-weight: bolder;
+    margin-top: 5%;
+    margin-bottom: -1rem;
+    margin-left: 3%;
+}
+
+.form-con {
+    margin-left: 4.5%;
+    border: 1px solid transparent;
+    border-bottom: 3px solid rgb(240, 240, 240);
+    outline-color: #dad4d4;
+    outline-offset: 3px;
+
+}
+
+.form-contro.change::-webkit-input-placeholder {
+    color: rgb(177 3 12);
+    font-size: .9rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    font-weight: bolder;
+}
+
+.submit1 {
+    width: 87%;
+    height: 42px;
+    margin-top: 5%;
+    margin-left: 5%;
+    margin-bottom: 5%;
+    background-color: rgb(177 3 12);
+    border-radius: 10px;
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: bolder;
+    border: rgb(177 3 12);
+}
+
+.submit1 {
+    margin-top: 2%;
+}
+
+input:-internal-autofill-previewed,
+input:-internal-autofill-selected {
+    -webkit-text-fill-color: #807c7c;
+    transition: background-color 5000s ease-out 0.5s;
+}
+
+.inforform {
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 5%;
+}
+
+input[type=text], select {
+    width: 100%;
+    padding: 3% 3%;
+    margin: 2% 0;
+    box-sizing: border-box;
+    border: 3px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+}
+
+input[type=text], select:focus {
+    border: 3px solid #555;
+}
+
+select>option:focus {
+    /* margin:40px; */
+    background: rgba(0, 0, 0, 0.3);
+    color: #fff;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}

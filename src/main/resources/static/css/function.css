@@ -1,0 +1,128 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+li {
+    list-style: none;
+
+}
+
+.head {
+    width: 100%;
+    height: 45px;
+    background-color:rgb(177 3 12);
+    position: relative;
+}
+
+.head>p {
+    color: #fff;
+    font-size: 1.1rem;
+    font-family: FZShuTi;
+    font-weight: bolder;
+    margin-left: 37%;
+    position: absolute;
+    line-height: 45px;
+}
+
+.btn:not(#down,#gekai){
+    position: absolute;
+    width: 10%;
+    height: 100%;
+    background-color:rgb(177 3 12);
+    border: none;
+    color: #fff;
+    font-size: 1rem;
+    line-height: 35px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    font-weight: bolder;
+
+}
+
+.btn-check:focus+.btn,
+.btn:focus {
+    box-shadow: 0 0 0 0rgb(177 3 12);
+}
+
+.offcanvas {
+    border-right: 2px solidrgb(177 3 12);
+    background-color: rgb(220, 220, 220);
+}
+
+.offcanvas-header>div>h3 {
+    font-size: 1.2rem;
+    font-family: STHupo;
+    color:rgb(177 3 12);
+}
+
+
+
+.line2 {
+    width: 100%;
+    height: 1px;
+    background-color: #e5e5e5;
+    margin-top: 16%;
+    margin-left: 0;
+    border-bottom: 5px solidrgb(177 3 12);
+    border-radius: 20px;
+}
+
+li {
+    height: 50px;
+}
+
+li.nav-item {
+    height: 50px;
+}
+
+li>a {
+    font-size: 1rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    font-weight: bolder;
+    margin-left: -5%;
+    line-height: 30px;
+}
+
+.nav-pills .nav-link:hover {
+    background-color:rgb(177 3 12);
+    color: #fff;
+}
+
+
+.offcanvas-header {
+    width: 100%;
+    height: 30%;
+    position: relative;
+}
+
+.offcanvas-body {
+    width: 100%;
+    height: 50%;
+    margin-top: -18%;
+    /* position: relative; */
+}
+
+.dropdown {
+    position: absolute;
+    margin-top: -10%;
+}
+
+
+.dropdown img{
+    margin-top: 0%;
+    width: 60%;
+    height: 30%;
+    margin-left: -1%;
+}
+
+.iconfont  {
+    font-size: 1.4rem;
+    /* color:rgb(177 3 12); */
+    margin-left: 0;
+    margin-top: 0;
+}

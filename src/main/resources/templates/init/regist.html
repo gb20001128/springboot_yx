@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>注册 -悠嘻相声社</title>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body {
+            background-color: #fff;
+            /* background-color: #c75c56; */
+        }
+
+        p {
+            font-size: 1.6rem;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+            color: rgb(177 3 12);
+            font-weight: bolder;
+            margin-bottom: 1.3rem;
+            margin-left: 5%;
+        }
+
+        body>div {
+            /* width: 95%; */
+            /* height: 100%; */
+            margin-top: 20%;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 15px;
+        }
+
+        .form-contro {
+            width: 90%;
+            height: 53px;
+            margin-left: 4.5%;
+            margin-top: 3%;
+            /* margin-left:10px; */
+            border: 1px solid transparent;
+            border-bottom: 3px solid rgb(240, 240, 240);
+            /* outline-style: ; */
+            outline-color: #dad4d4;
+            outline-offset: 3px;
+
+        }
+
+        .form-contro.change::-webkit-input-placeholder {
+            color:rgb(177 3 12);
+            font-size: .9rem;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+            font-weight: bolder;
+        }
+
+        .btn {
+            width: 87%;
+            height: 42px;
+            margin-top: 5%;
+            margin-left: 5%;
+            margin-bottom: 5%;
+            background-color: rgb(177 3 12);
+            border-radius: 10px;
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: bolder;
+        }
+
+        input:-internal-autofill-previewed,
+        input:-internal-autofill-selected {
+            -webkit-text-fill-color: #807c7c;
+            transition: background-color 5000s ease-out 0.5s;
+        }
+    </style>
+</head>
+
+<body class="container-sm">
+    <div id="app">
+        <p>注册</p>
+        <form method="post" class="needs-validation" th:action="@{/re_success}">
+            <input type="text" class="form-contro" id="uname" placeholder="用户昵称" name="userName" required>
+            <input type="password" class="form-contro" id="pwd" placeholder="用户密码" name="passWord" required>
+            <input type="password" class="form-contro" id="repwd" placeholder="确认密码" name="rpswd" required>
+            <button type="submit" class="btn btn-primar">注册</button>
+        </form>
+    </div>
+
+    <script>
+        (function () {
+            var uname = document.getElementById('uname');
+            var pwd = document.getElementById('pwd');
+            var repwd = document.getElementById('repwd');
+            var btn = document.querySelector('.btn');
+            var inputs = document.querySelectorAll('.form-contro');
+            var str = /^[a-zA-Z0-9]{6,12}/g;
+
+            uname.onblur = function () {
+                uname.classList.remove('change');
+                if (uname.value == '') {
+                    uname.classList.add('change');
+                    inputs[0].placeholder = '用户昵称不能为空!';
+                } else if (uname.value.length > 9) {
+                    uname.value = '';
+                    uname.classList.add('change');
+                    inputs[0].placeholder = '长度不能超过八个字!';
+                }
+            }
+
+            uname.onfocus = function () {
+                inputs[0].placeholder = '用户昵称';
+                uname.classList.remove('change');
+            }
+
+            pwd.onblur = function () {
+                pwd.classList.remove('change');
+                if (pwd.value == '') {
+                    pwd.classList.add('change');
+                    inputs[1].placeholder = '密码不能为空!';
+                } else {
+                    var str = /^[a-zA-Z0-9]{6,12}/g;
+                    if (str.test(pwd.value)) {
+                        // alert(测试成功);
+                    } else {
+                        pwd.value = '';
+                        pwd.classList.add('change');
+                        inputs[1].placeholder = '密码须包含6-12位的字母数字!';
+                    }
+                }
+
+            }
+
+            pwd.onfocus = function () {
+                inputs[1].placeholder = '用户密码';
+                pwd.classList.remove('change');
+            }
+
+            repwd.onblur = function () {
+                repwd.classList.remove('change');
+                if (repwd.value == '') {
+                    repwd.classList.add('change');
+                    inputs[2].placeholder = '确认密码不能为空!';
+                } else if (repwd.value != pwd.value) {
+                    repwd.value = '';
+                    repwd.classList.add('change');
+                    inputs[2].placeholder = '输入的两次密码不一致!';
+                } else return true;
+            }
+
+            repwd.onfocus = function () {
+                inputs[2].placeholder = '确认密码';
+                repwd.classList.remove('change');
+            }
+        })();
+
+    </script>
+
+</body>
+
+</html>
+
+
+<script th:src="@{/js/jquery-1.7.2.js}"></script>
+<!--ajax判断用户昵称是否已存在-->
+<script type="text/javascript">
+    //页面加载完成之后
+    $(function () {
+        $("#uname").blur(function () {
+
+            var username = this.value;      // 获取输入的用户昵称
+            $.getJSON("http://43.142.110.195:9999/testaj/" + username, null, function (data) {
+
+                if (data) {
+                    alert("用户昵称已存在");
+                    $("#uname").val("");
+                } else {
+                    $("span.error").text("");
+                }
+            });
+        });
+    });
+</script>

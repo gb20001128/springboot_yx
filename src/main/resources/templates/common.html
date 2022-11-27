@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    
+</head>
+<body>
+
+<!--牌匾-->
+ <div th:fragment="function1" style="position: fixed;left: 0; top: 0;" class="head">
+    <button class="btn btn-primar iconfont icon-cebianlan" type=" button" data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+    </button>
+
+    <p style="font-size: 1.5rem" id="yxhead">悠嘻相声社</p>
+</div>
+
+<!-- 导航栏 -->
+<div  th:fragment="function2" class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel"
+     style="width: 45%;">
+    <div class="offcanvas-header">
+        <div class="dropdown" style="margin-top: 7%;margin-left:18%;">
+            <a th:href="@{/showTime}">
+                <a th:href="@{/updateI}" ><img th:src="@{'http://43.142.110.195:8080/headImage/'+${session.My_headImage}}" alt="" class="rounded-circle me-2"></a>
+            </a>
+        </div>
+    </div>
+
+
+
+    <div class="offcanvas-body">
+
+
+        <div class="dropdown mt-3">
+            <!-- 我是分割线 -->
+            <div class="line2" ></div>
+
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li class="nav-item first">
+                    <a th:href="@{/generation}" class="nav-link link-dark">
+                        <span class="iconfont icon-huangguan" width="16" height="16"></span>
+                        历届社长
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/showTime}" class="nav-link link-dark">
+                        <span class="iconfont icon-datuzhanshi" width="16" height="16"></span>
+                        悠嘻风采
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/microVideo}" class="nav-link link-dark">
+                        <span class="iconfont icon-yinle" width="16" height="16"></span>
+                        悠嘻微视
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/love}" class="nav-link link-dark">
+                        <span class="iconfont icon-lianai" width="16" height="16"></span>
+                        悠嘻脱单
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/aboutus}" class="nav-link link-dark">
+                        <span class="iconfont icon-guanyuwomen" width="16" height="16"></span>
+                        关于我们
+                    </a>
+                </li>
+            </ul>
+
+            <div class="line3"></div> <!-- 我是分割线 -->
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li class="zhuye">
+                    <a th:href="@{/main.html}" class="nav-link link-dark">
+                        <span class="iconfont icon-zhuye" width="16" height="16"></span>
+                        返回主页
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+
+
+
+    </div>
+</div>
+</body>
+</html>

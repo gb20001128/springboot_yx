@@ -1,0 +1,8 @@
+file:
+  pathHead: /www/server/tomcat/webapps/headImage/
+  pathShow: /www/server/tomcat/webapps/upload/
+  pathLove: /www/server/tomcat/webapps/love/
+
+
+
+

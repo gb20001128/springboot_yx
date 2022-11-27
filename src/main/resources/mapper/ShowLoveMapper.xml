@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.springboot_yx.mapper.ShowLoveMapper">
+
+    <insert id="addLove" parameterType="com.springboot_yx.bean.ShowLove">
+        insert  yx_showlove  value (#{id},#{userName},#{headImage},#{declaration},#{loveImage})
+    </insert>
+
+
+<!--列举所有恋爱展示    -->
+    <select id="selectLoveALL" resultType="com.springboot_yx.bean.ShowLove" >
+        select * from yx_showlove
+        order by id desc
+    </select>
+
+    <!--列举自己历史展示    -->
+    <select id="myHistory" resultType="com.springboot_yx.bean.ShowLove" >
+        select * from yx_showlove
+        where userName=#{userName} order by id desc
+    </select>
+
+    <delete id="delete" >
+        delete from yx_showlove where loveimage=#{imageName}
+    </delete>
+
+    <update id="updateShowLove" >
+        update yx_showlove set username=#{newName} where username=#{oldName}
+    </update>
+
+    <update id="updateHeadImage" >
+        update yx_showlove set headimage=#{headImage} where username=#{userName}
+    </update>
+
+    <select id="selectNameById" resultType="string">
+        select username from yx_showlove where id=#{id}
+    </select>
+
+</mapper>

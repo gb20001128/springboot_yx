@@ -1,0 +1,65 @@
+{
+  "id": "3449189",
+  "name": "icon6.2",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "9122494",
+      "name": "主页",
+      "font_class": "zhuye",
+      "unicode": "e663",
+      "unicode_decimal": 58979
+    },
+    {
+      "icon_id": "11474220",
+      "name": "bussiness-man",
+      "font_class": "bussiness-man",
+      "unicode": "e6ef",
+      "unicode_decimal": 59119
+    },
+    {
+      "icon_id": "3734350",
+      "name": "2侧边栏",
+      "font_class": "cebianlan",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
+      "icon_id": "4171088",
+      "name": "关于我们",
+      "font_class": "guanyuwomen",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "5031",
+      "name": "皇冠",
+      "font_class": "huangguan",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "1840042",
+      "name": "恋爱",
+      "font_class": "lianai",
+      "unicode": "e6e2",
+      "unicode_decimal": 59106
+    },
+    {
+      "icon_id": "6447164",
+      "name": "大图展示",
+      "font_class": "datuzhanshi",
+      "unicode": "e641",
+      "unicode_decimal": 58945
+    },
+    {
+      "icon_id": "7588124",
+      "name": "音乐",
+      "font_class": "yinle",
+      "unicode": "e624",
+      "unicode_decimal": 58916
+    }
+  ]
+}

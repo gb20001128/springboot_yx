@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.bundle.min.js"></script>
+    <title>悠嘻相声社</title>
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_3449189_1qvtnltxygf.css">
+
+    <link rel="stylesheet" th:href="@{/icon/home/iconfont.css}">
+
+    <link rel="stylesheet" th:href="@{/webjars/layui/2.5.7/css/layui.css}">
+    <script th:src="@{/webjars/layui/2.5.7/layui.js}"></script>
+    <script th:src="@{/js/jquery-1.7.2.js}"></script>
+
+
+    <!-- 侧边栏的css   -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/leftNav.css}" />
+
+    <style>
+        #uploadALl{
+            margin: 7%;
+        }
+        .layui-input-block{
+            margin-left: -1%;
+        }
+    </style>
+</head>
+<body>
+
+
+<div th:replace="common :: function1"></div>
+<div th:replace="common :: function2"></div>
+
+<br>  <br>  <br>
+
+<br>
+    <form method="post" th:action="@{/uploadMicroVideo}" style="margin-left: 30%" enctype="multipart/form-data">
+        <input type="text" width="50%" height="40%" name="description" placeholder="输入视频描述...."><br><br><br><br>
+        选择视频<input type="file" name="video" accept="video/*"><br><br><br><br>
+        选择封面<input type="file" name="doorImage" accept="image/png, image/jpeg, image/gif, image/jpg"><br><br><br>
+        <input type="submit" value="上传">
+    </form>
+
+</body>
+</html>
+
+<script>
+
+    //如果你要用LayUi提供的form,这部分必须写上
+    layui.use('form', function(){
+        let form = layui.form;
+        let $ = layui.$;
+        //监听表单的提交
+        form.on('submit(upload)', function(data){
+            $.ajax({
+                url: "/addImage",   //请求路径
+                method: "post",            //请求方式
+                data: data.field,          //请求数据:各个域键值
+                dataType: "JSON",          //上传参数的数据格式
+                success: function (res){   //成功以后获取返回值结果 怎么做
+                    if (res ==1){
+                        layer.msg("提交成功");
+                        window.location.href="http://43.142.110.195:9999/showTime";
+                    }
+                    if (res ==0){
+                        layer.msg("图片描述最长20  !");
+                        return false;
+                    }
+                    if (res ==-1){
+                        layer.msg("图片描述不能为空 !");
+                        return false;
+                    }
+                    if (res ==-2){
+                        layer.msg("每天最多传三张 !");
+                        return false;
+                    }
+                }
+            })
+            return false;
+        });
+    });
+
+    //如果你要用LayUi提供的文件上传功能,这部分必须写上
+    layui.use('upload', function(){
+        let upload = layui.upload;
+        let $ = layui.$;
+        //执行实例
+        let uploadInst = upload.render({
+            elem: '#upload-button'  //绑定元素
+            ,url: '/uploadImage'  //上传接口
+            ,done: function(res){  //执行完后端后的请求后,res代表返回的Json
+                if (res.code == 1){
+                    layer.msg("上传成功");
+                    //获得图片的路径
+                    let src = res.data.src;
+                    //将图片进行回显
+                    $("#image").attr("src",src);
+                    //将图片的地址赋值给 form的隐藏域
+                    $("#imagePath").attr("value",src);
+                }else if (res.code ==-1){
+                    layer.msg("每天最多传三张 ！");
+                }else if (res.code ==-2){
+                    layer.msg("上传图片不得大于20MB ！");
+                }
+                else{
+                    layer.msg("上传失败");
+                }
+            }
+            ,error: function(){
+                //请求异常回调
+            }
+        });
+    });
+
+</script>
+
+
+
+
+<script type="text/javascript">
+    //页面加载完成之后
+    $(function () {
+        $("#tishi").click(function () {
+            alert("上传图片较慢，等耐心等待回显图片之后再点提交！")
+        });
+    });
+</script>
+
+
+
+
+

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.springboot_yx.mapper.LoveMapper">
+
+    <insert id="addLove" parameterType="com.springboot_yx.bean.Love">
+        insert  yx_love  value (#{id},#{userName},#{headImage},#{sex},#{age},
+                                #{lw},#{characters},#{talent},#{mode},#{number})
+    </insert>
+
+
+<!--查找符合条件的Love,参数类型可以不指定    -->
+    <select id="selectLove" resultType="com.springboot_yx.bean.Love" parameterType="com.springboot_yx.bean.Love">
+        select * from yx_love
+        where sex=#{sex} and age=#{age} and lw=#{lw} and characters=#{characters} and talent=#{talent}
+    </select>
+
+    <update id="updateLove" >
+        update yx_love set username=#{newName} where username=#{oldName}
+    </update>
+
+    <update id="updateImage">
+        update yx_love set headimage=#{headImage} where username=#{userName}
+    </update>
+
+    <select id="selectLoveByName" resultType="com.springboot_yx.bean.Love">
+        select * from yx_love where username=#{name}
+    </select>
+
+    <select id="selectLoveById" resultType="com.springboot_yx.bean.Love">
+        select * from yx_love where id=#{id}
+    </select>
+
+
+
+</mapper>

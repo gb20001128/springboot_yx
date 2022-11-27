@@ -1,0 +1,35 @@
+spring:
+  redis:
+#    url: redis://@192.168.200.139:6400
+    url: redis://wsjgb8080@43.142.110.195:6379
+    client-type: jedis                   #jedis是redis的java客户端,还可以切换成 Lettuce
+    jedis:
+      pool:
+        max-active: 10
+
+
+  servlet:
+    multipart:
+      # 设置 上传文件的大小
+      max-file-size: 100MB
+      # 设置 整个请求的大小
+      max-request-size: 150MB
+
+
+
+  datasource:
+    url: jdbc:mysql://43.142.110.195:3306/youxi
+    username: root
+    password: 4573443d2f2d7c60
+    driver-class-name: com.mysql.jdbc.Driver
+
+    #  设置超时时间:3秒
+    jdbc:
+      template:
+        query-timeout: 3
+
+    # 配置mybatis规则
+    mybatis:
+      mapper-locations: classpath:mapper/*.xml  #sql映射文件位置
+      configuration: #对应着mybatis的配置文件-mybatis-config.xml
+        map-underscore-to-camel-case: true              #开启驼峰命名规则

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js"></script>
+    <title>悠嘻脱单--筛选</title>
+    <link rel="stylesheet" href="../download/font_3449189_5t7hag7b65w/iconfont.css">
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_3449189_1qvtnltxygf.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/leftNav.css}" />
+
+    <link rel="stylesheet" th:href="@{/icon/home/iconfont.css}">
+
+    <link rel="stylesheet" th:href="@{/css/editData.css}">
+    <style type="text/css">
+        .body {
+            margin-top: 15%;
+        }
+
+        .body>h5 {
+            font-size: 1rem;
+            /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif; */
+            /* font-family: YouYuan; */
+            font-family: STHupo;
+            /* font-weight: bolder; */
+            color: rgb(177 3 12);
+            margin-left: 2%;
+            margin-top: 5%;
+        }
+
+        .word>p {
+            font-size: .8rem;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+            /* font-weight: bolder; */
+            font-family: LiSu;
+            margin-left: 2%;
+            margin-top: 5%;
+            /* //首行缩进 */
+            text-indent: 1.5em;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div th:replace="common :: function1"></div>
+    <div th:replace="common :: function2"></div>
+
+    <div class="body">
+        <p>请筛选您的理想伴侣</p>
+        <form th:action="@{/selectMyLove}" method="post" class="inforform" name="shaixuan">
+            <!-- <input type="text" class="form-contro" id="uname" placeholder="Enter username" name="uname" required>
+        <input type="password" class="form-contro" id="pwd" placeholder="Enter password" name="pswd" required> -->
+
+            <table style="font-size: 1rem; color:grey; text-align:left;">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <td></td>
+                            <td></td>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>性别</td>
+                            <td>
+                                <input type="radio" name="sex" value="男" checked="checked" id="nan"> <label for="nan">
+                                    男</label>
+                                <input type="radio" name="sex" value="女" id="nv"> <label for="nv"> 女</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>年龄</td>
+                            <td>
+                                <select name="age" id="age">
+                                    <option value="0">-请选择Ta的年龄段-</option>
+                                    <option >20岁以下</option>
+                                    <option >20-23岁</option>
+                                    <option >24-27岁</option>
+                                    <option >27-30岁</option>
+                                    <option >30岁以上</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>理性/感性</td>
+                            <td>
+                                <input type="radio" name="lw" value="理性" checked="checked" id="lixing"> <label
+                                    for="lixing">
+                                    理性</label>
+                                <input type="radio" name="lw" value="感性" id="ganxing"> <label for="ganxing">
+                                    感性</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>性格</td>
+                            <td>
+                                <select name="characters" id="characters">
+                                    <option value="0">-请选择Ta的性格-</option>
+                                    <option >多重性格</option>
+                                    <option >成熟稳重</option>
+                                    <option >温柔体贴</option>
+                                    <option >活泼可爱</option>
+                                    <option >内向害羞</option>
+                                    <option >外向开朗</option>
+                                    <option >幽默洒脱</option>
+                                    <option >野蛮泼辣</option>
+                                    <option >聪明伶俐</option>
+                                    <option >保守严肃</option>
+                                    <option >勤勉仗义</option>
+                                    <option >热情憨厚</option>
+                                    <option >内敛豁达</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>特长</td>
+                            <td>
+                                <select name="talent" id="talent">
+                                    <option value="0">-请选择Ta的特长-</option>
+                                    <option >球类</option>
+                                    <option >武术</option>
+                                    <option >舞蹈</option>
+                                    <option >乐器</option>
+                                    <option >声乐</option>
+                                    <option >绘画</option>
+                                    <option >嘴皮子</option>
+                                    <option >干饭</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </table>
+            <button class="submit1">筛选</button>
+        </form>
+
+
+    </div>
+
+
+</body>
+
+<script>
+    $(function () {
+        $('.submit1').click(function () {
+            // alert('提交成功');//测试
+            var age = $('#age').val();
+            var characters = $('#characters').val();
+            var talent = $('#talent').val();
+            if (age == 0) {
+                alert('请选择Ta的年龄段');
+                return false;
+            } else if (characters == 0) {
+                alert('请选择Ta的性格');
+                return false;
+            } else if (talent == 0) {
+                alert('请选择Ta的特长');
+                return false;
+            } else {
+                document.shaixuan.submit();
+                alert('提交成功');
+            }
+
+        })
+
+    });
+</script>

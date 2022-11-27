@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.bundle.min.js"></script>
+    <title>悠嘻相声社--悠嘻风采</title>
+    <link rel="stylesheet" th:href="@{/css/iconfont.css}">
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_3449189_1qvtnltxygf.css">
+    <!-- 侧边栏的css   -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/leftNav.css}" />
+
+    <link rel="stylesheet" th:href="@{/css/tuodan.css}">
+
+    <link rel="stylesheet" th:href="@{/icon/home/iconfont.css}">
+
+    <style type="text/css">
+
+        .body{
+            margin-top: 15%;
+        }
+        .body>h5 {
+            font-size: 1.5rem;
+            font-family: STHupo;
+            /* font-weight: bolder; */
+            color:rgb(177 3 12);
+            margin-left: 2%;
+            margin-top: 15%;
+            text-align: center;
+        }
+        .delete{
+            color: white;
+            background-color: rgb(177 3 12);
+            border: rgb(177 3 12);
+            margin-left: 70%;
+            padding: 3% 3%;
+            margin-top: 6%;
+            border-radius: 10%;
+        }
+        .delete1{
+            color: white;
+            background-color: rgb(177 3 12);
+            border: rgb(177 3 12);
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div th:replace="common :: function1"></div>
+<div th:replace="common :: function2"></div>
+
+<div class="body">
+    <h5 id="show">管理员界面</h5>
+
+
+    <!-- 正文 -->
+    <div class="tbody1" th:each="gb,stat:${gbs}">
+        <div class="imgforpic">
+            <div class="comment_wrapper">
+                <div class='comment_list'>
+                    <dl v-for="item in hotComments">
+                        <!--评论人头像-->
+                        <dt><img style="width: 50px;height: 50px" th:src="@{'http://43.142.110.195:8080/headImage/'+${gb.headImage}}" alt=""></dt>
+                        <!--评论人网名-->
+                        <dd class="name" th:text="${gb.userName}"></dd>
+                        <!--评论-->
+                        <dd class="detail">
+                            <p th:text="${gb.declaration}"></p>
+                        </dd>
+                    </dl>
+
+                </div>
+            </div>
+        </div>
+        <div class="picDiv">
+            <img th:src="@{'http://43.142.110.195:8080/love/'+${#strings.substring(gb.loveImage,0,9)}}" alt="">
+
+        </div>
+        <br>
+        <a class="delete" th:href="@{'/deleteManger/'+${gb.loveImage}}"
+           onclick="javascript:return del();"><button  class="delete1">删除</button></a>
+        <hr>
+    </div>
+</div>
+
+
+
+</body>
+
+
+</html>
+<script type="text/javascript">
+
+    function del() {
+        var msg = "删除不可恢复\n您确定要删除吗 ?";
+        if (confirm(msg) == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+</script>

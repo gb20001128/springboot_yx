@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <title>悠嘻相声社--悠嘻脱单</title>
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_3449189_1qvtnltxygf.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/leftNav.css}" />
+
+    <link rel="stylesheet" th:href="@{/icon/home/iconfont.css}">
+    <link rel="stylesheet" th:href="@{/css/tuodan.css}">
+    <script type="text/javascript" th:src="@{/js/jquery-1.7.2.js}"></script>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <style type="text/css">
+        .body>h5 {
+            font-size: 1rem;
+            /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif; */
+            /* font-family: YouYuan; */
+            font-family: STHupo;
+            /* font-weight: bolder; */
+            color: #b10c03;
+            margin-left: 2%;
+            margin-top: 5%;
+        }
+
+        .word>p {
+            font-size: .8rem;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+            /* font-weight: bolder; */
+            font-family: LiSu;
+            margin-left: 2%;
+            margin-top: 5%;
+            /* //首行缩进 */
+            text-indent: 1.5em;
+        }
+
+        #show {
+            font-size: 1.5rem;
+            font-family: STHupo;
+            color: rgb(177 3 12);
+            text-align: center;
+            margin-top: 4rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div th:replace="common :: function1"></div>
+    <div th:replace="common :: function2"></div>
+
+    <div class="body" style="margin-top: 20%;">
+        <h5 id="show">悠嘻脱单</h5>
+
+
+        <a th:href="@{/myhistory}"> <button id="ago" type="submit">上传历史</button> </a>
+        <a th:href="@{/selectLove}"><button id="choose" type="submit">筛选</button> </a>
+        <a th:href="@{/addLoves}"> <button id="upup" type="submit">我也要上传</button> </a>
+
+        <!-- 正文 -->
+        <div class="tbody1" th:each="gb,stat:${gbs}">
+            <div class="divforzhuye" name="forid">
+                <div class="imgforpic">
+                    <div class="comment_wrapper">
+                        <div class='comment_list'>
+                            <dl v-for="item in hotComments">
+                                <!--评论人头像-->
+                                <dt>
+                                    <div class="forimg">
+                                        <img th:src="@{'http://43.142.110.195:8080/headImage/'+${gb.headImage}}" alt=""
+                                            class="dianwo">
+                                    </div>
+
+                                    <!-- </div> -->
+                                </dt>
+                                <!--评论人网名-->
+                                <dd class="name" th:id="${gb.id}" value="hahah" th:text="${gb.userName}"
+                                    style="font-size: 1.1rem"></dd>
+                                <!--评论-->
+                                <dd class="detail">
+                                    <p th:text="${gb.declaration}"></p>
+                                </dd>
+                            </dl>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="picDiv">
+                    <img th:data-src="@{'http://43.142.110.195:8080/love/'+${#strings.substring(gb.loveImage,0,9)}}"
+                        class="lazy" th:src="@{/images/Loading.gif}" style="width: 90%;">
+                    <!-- <img th:src="@{'http://43.142.110.195:8080/upload/'+${#strings.substring(gb.value,0,9)}}" alt=""> -->
+                </div>
+
+                <div class="dropdown-contents" style="width: 64%">
+                    <div class="forform">
+
+                        加载中...
+                    </div>
+                </div>
+
+            </div>
+
+            <hr>
+        </div>
+    </div>
+
+</body>
+
+
+</html>
+<!-- 懒加载 -->
+<script>
+    window.onload = function () {//onload：等所有资源文件加载完毕以后执行
+        let imgs = document.querySelectorAll('.lazy')
+        function lazyload() {
+            // 可视区域的高度
+            let viewHeight = document.documentElement.clientHeight;
+            // 滚动条滚出去的高度
+            let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            for (let i = 0; i < imgs.length; i++) {
+                //图片距离文档顶部的距离<滚动条故出去的高度+可视区域的高度（即需要加载的图面滚到可视区域了，就要进行懒加载了）
+                if (imgs[i].offsetTop < viewHeight + scrollTop) {
+                    imgs[i].src = imgs[i].getAttribute('data-src')
+                }
+            }
+        }
+        lazyload();//页面一进来时加载
+        //最好给滚动加一个节流函数
+        function thorttle(fn, wait) {
+            let timer = null
+            return function () {
+                if (!timer) {
+                    timer = setTimeout(() => {
+                        fn.call(this)
+                        timer = null
+                    }, wait)
+                }
+            }
+        }
+        // 页面滚动时
+        window.onscroll = thorttle(lazyload, 500)
+    }
+</script>
+
+<script>
+    $(function () {
+        var txs = document.getElementsByClassName("forimg");
+        var username = document.getElementsByClassName("name");
+        // 用for循环遍历每一个username，并获取他们的id
+        // var usernameid = [];
+        var names = [];
+        for (var i = 0; i < username.length; i++) {
+
+            names[i] = username[i].id;   //没有改变username的id
+        }
+
+        // 用for循环遍历每一个txs，并获取他们的id
+        var txsid = [];
+        for (var j = 0; j < txs.length; j++) {
+            txsid[j] = names[j];
+            txs[j].id = txsid[j];  //改变了txs的id为对应的username的值
+
+        }
+
+        var contents = document.getElementsByClassName("dropdown-contents");
+        var contentsid = [];
+        for (var k = 0; k < contents.length; k++) {
+            contentsid[k] = `${names[k]}1`;
+            contents[k].id = contentsid[k];  //改变了contents的id为对应的username的值末尾加1
+        }
+
+        // 为每个txs绑定点击事件
+        for (var m = 0; m < txs.length; m++) {
+            txs[m].onclick = function () {
+                // 获取当前点击的txs的id
+                var id = this.id;
+                $(document).click(function (e) {
+                    var _con = document.getElementById(id); // 设置目标区域
+                    if (!_con.contains(e.target)) { // 判断鼠标指针是否指向目标区域
+                        $('#' + id + '1').removeClass('dropdown-contents1');
+                    } else {
+                        $('#' + id + '1').toggleClass('dropdown-contents1');
+                    }
+                });
+                $.ajax({
+
+                    url: "http://43.142.110.195:9999/test0/" + id,
+                    type: "GET",
+                    data: {
+
+                    },
+                    success: function (data) {
+
+                        var condiv = document.getElementById(`${id}1`);
+                        console.log(condiv);
+
+                        condiv.innerHTML = `<div class="forform">
+                                    <table class="table" style="color: white; font-size:.5rem">
+                                <tbody>
+                                    <tr style="border-top: none;">
+                                        <td>性别</td>
+                                        <td>
+                                            ${data.sex}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>年龄</td>
+                                        <td>
+                                            ${data.age}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>理性/感性</td>
+                                        <td>
+                                            ${data.lw}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>性格</td>
+                                        <td>
+                                            ${data.characters}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>特长</td>
+                                        <td>
+                                            ${data.talent}
+                                        </td>
+                                    </tr>
+                                    <tr style="border-bottom: none;">
+                                        <td>
+                                            ${data.mode}
+                                        </td>
+                                        <td>
+                                            ${data.number}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>`;
+
+
+                    }
+
+                });
+            }
+        }
+    });
+</script>

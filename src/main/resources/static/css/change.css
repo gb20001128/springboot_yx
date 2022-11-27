@@ -1,0 +1,56 @@
+#imgforchange {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+#upload-input {
+    width: 50%;
+    /* margin-left: 5%; */
+}
+
+#changePic {
+    border: none;
+    background-color: #b10c03;
+    color: white;
+    width: 50%;
+    padding: 4%;
+    border-radius: 10%;
+}
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 3% 3%;
+    margin: 2% 0;
+    box-sizing: border-box;
+    border: 3px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+}
+
+input[type=text], input[type=password]:focus {
+    border: 3px solid #555;
+}
+
+td {
+    vertical-align: middle;
+}
+
+.changefd {
+    width: 87%;
+    height: 42px;
+    margin-top: 5%;
+    margin-left: 5%;
+    margin-bottom: 5%;
+    background-color: #b10c03;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: bolder;
+    border: rgb(177 3 12);
+}
+
+.changefd {
+    margin-top: 2%;
+}

@@ -1,0 +1,51 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* .body {
+               background: rgba(177, 3, 12 ,.1);
+
+        } */
+.usbox {
+    width: 100%;
+    height: 20%;
+    /* background: rgba(177, 3, 12 ,.1); */
+    /* background-color: rgba(255, 255, 255,.7); */
+    margin: 5% auto;
+    padding: 5%;
+    /*border-top: 0.5rem solid rgb(177 3 12);*/
+
+}
+#box11{
+    border-top-color: rgb(255 255 255);
+}
+
+.pic {
+    float: left;
+    width: 30%;
+    height: 100%;
+    margin-right: 5%;
+    /* background-color: black; */
+
+}
+
+.usbox .pic img {
+    width: 100%;
+}
+
+p {
+    /* width: ; */
+    /* color: white; */
+    font-size: .9rem;
+    text-indent: 1.3em;
+    /* margin: 2%; */
+}
+
+.qq {
+    text-indent: 0%;
+}
+
+.box1>p {
+    font-size: .8rem;
+}
