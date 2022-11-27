@@ -33,6 +33,7 @@ import java.util.Map;
  */
 public class HttpClient {
 	private String url;
+
 	private Map<String, String> param;
 	private int statusCode;
 	private String content;
