@@ -1,7 +1,7 @@
 spring:
   redis:
 #    url: redis://@192.168.200.139:6400
-    url: redis://wsjgb8080@43.142.110.195:6379
+    url: redis://redis密码@ip地址:6379
     client-type: jedis                   #jedis是redis的java客户端,还可以切换成 Lettuce
     jedis:
       pool:
@@ -18,9 +18,9 @@ spring:
 
 
   datasource:
-    url: jdbc:mysql://43.142.110.195:3306/youxi
+    url: jdbc:mysql://ip地址:3306/youxi
     username: root
-    password: 4573443d2f2d7c60
+    password: 密码
     driver-class-name: com.mysql.jdbc.Driver
 
     #  设置超时时间:3秒
